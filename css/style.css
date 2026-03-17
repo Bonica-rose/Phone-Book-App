@@ -1,0 +1,41 @@
+:root {
+    --bs-primary: #0d86b6;
+    --bs-hover-primary: #026e98;
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--bs-hover-primary);
+    border-color: var(--bs-hover-primary);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--bs-hover-primary);
+    --bs-btn-border-color: var(--bs-hover-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.bg-pastelgreen {
+    background-color: #eff9d0;
+    color: #171415;
+}
+
+footer {
+    background: #cfe2ff;
+    color: rgb(38, 35, 35);
+    text-align: center;
+    padding-block-start: 15px;
+    padding-block-end: 5px;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #cfe2ff;
+}
