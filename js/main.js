@@ -18,13 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
     tableBtn.addEventListener("click", () => {
         tableContainer.classList.remove("d-none");
         cardContainer.classList.add("d-none");
-        document.getElementsByTagName('footer').style.backgroundColor = '#cfe2ff'
+        document.querySelector('footer').style.backgroundColor = '#cfe2ff'
     });
 
     cardBtn.addEventListener("click", () => {
         tableContainer.classList.add("d-none");
-        cardContainer.classList.remove("d-none");
-        document.getElementsByTagName('footer').style.backgroundColor = '#eff9d0'
+        cardContainer.classList.remove("d-none");        
+        document.querySelector('footer').style.background = '#eff9d0'
+        document.querySelector('footer').style.borderTopColor = '#eff9d0'
     });
 
     function noDataRow(){
@@ -156,11 +157,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }            
 
     // ADD
-    addBtn.addEventListener("click", () => {
+    addContactBtn.addEventListener("click", () => {
         editIndex = -1;
         nameInput.value = "";
         emailInput.value = "";
         phoneInput.value = "";
+        saveBtn.textContent = 'Save';
         clearValidation();
         modal.show();
     });
@@ -172,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nameInput.value = c.name;
         emailInput.value = c.email;
         phoneInput.value = c.phone;
+        saveBtn.textContent = 'Update';
         clearValidation();
         modal.show();
     }
@@ -187,9 +190,9 @@ document.addEventListener("DOMContentLoaded", () => {
             phone: phoneInput.value.trim()
         };
 
-        if (editIndex === -1) {
+        if (editIndex === -1) {            
             contacts.unshift(newContact);
-        } else {
+        } else {            
             contacts[editIndex] = newContact;
         }
 
