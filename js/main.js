@@ -35,12 +35,28 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         table.appendChild(noDataRow);    
         searchInput.classList.add("d-none"); 
-        cardViewBtn.classList.add("disabled"); 
+        cardBtn.classList.add("disabled"); 
+    }
 
+    function saveToLocalStorage() {
+        localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+
+    function getFromLocalStorage() {
+        return JSON.parse(localStorage.getItem('contacts')) || [];
     }
 
     // LOAD API
-    function loadContacts() {
+    function loadContacts() { 
+        const localData = getFromLocalStorage();
+
+        // If local data exists → use it ONLY
+        if (localData.length > 0) {
+            contacts = localData;
+            displayContacts(contacts);
+            return;
+        }
+
         fetch("https://jsonplaceholder.typicode.com/users")
             .then(res => {
                 if (!res.ok) {
@@ -48,16 +64,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 return res.json();
             })
-            .then(data => {
+            .then(data => {    
+                // console.log('contacts : ',data);
                 contacts = data;
+                
+                //Save initial API data
+                saveToLocalStorage();
+                
                 displayContacts(contacts);
             })
             .catch(error => {
                 console.error(error);
-                noDataRow()
-                alert(`${error}; Failed to load contacts`);
+                noDataRow();
+                alert(`Failed to load contacts`);
+                
             });
     }
+
+    
 
     // DISPLAY
     function displayContacts(data) {
@@ -196,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
             contacts[editIndex] = newContact;
         }
 
+        saveToLocalStorage();
         displayContacts(contacts);
         modal.hide();
     });
@@ -203,6 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // DELETE
     function deleteContact(index) {
         contacts.splice(index, 1);
+        saveToLocalStorage();
         displayContacts(contacts);
     }
 

@@ -4,10 +4,13 @@ JavaScript Phone Book App with CRUD operations, serach functionality, Bootstrap 
 
 ### Features
 
-- Using mock API (like JSONPlaceholder)
-- Search Contact
-- Edit & Delete in both views
-- Font Awesome Icons
-- No Inline JS
-- User Input Validation
-- Error handling
+- Uses mock API (e.g., JSONPlaceholder) on first load only
+- Loads data from Local Storage on subsequent refreshes
+- Search contacts
+- Add contact (via modal form)
+- Edit and delete contacts in both table and card views
+- Responsive UI with table and card view toggle
+- Font Awesome icons integration
+- No inline JavaScript 
+- User input validation
+- Error handling for API failures
